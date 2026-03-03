@@ -223,9 +223,36 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 Copyright © 2026 Wali Raza. All rights reserved.
 
-This project is **private and proprietary**. Unauthorized copying, distribution, or use of this software is strictly prohibited.
+This project uses a **Custom Commercial License**.
 
-For licensing inquiries, please contact: **thisiswaliraza@gmail.com**
+### ✅ **Free Personal & Development Use**
+You are free to use, modify, and distribute this software for:
+- Personal projects
+- Educational purposes
+- Non-commercial development
+- Learning and experimentation
+
+No permission needed for these uses - just retain the copyright notice.
+
+### 💼 **Commercial Use (Paid License Required)**
+A one-time paid license is required if you are:
+- A company or organization using this software
+- Using this software to generate revenue
+- Incorporating into a commercial product
+- Using for internal business operations
+- Offering commercial services based on this software
+
+### 📧 **To Obtain a Commercial License:**
+1. Email: **thisiswaliraza@gmail.com**
+2. Include details about your intended use
+3. Pay one-time license fee (amount to be agreed)
+4. Receive written permission before commercial deployment
+
+**Contact for licensing:** thisiswaliraza@gmail.com
+
+---
+
+*Unauthorized commercial use is prohibited. See the [LICENSE](LICENSE) file for full terms.*
 
 ---
 
@@ -276,3 +303,4 @@ For support or inquiries:
 - **Live App:** [https://keyword-explorer-three.vercel.app](https://keyword-explorer-three.vercel.app)
 - **GitHub Repo:** [https://github.com/lif3time-secr3t-c0de/Keyword-Explorer](https://github.com/lif3time-secr3t-c0de/Keyword-Explorer)
 - **Author Email:** thisiswaliraza@gmail.com
+
