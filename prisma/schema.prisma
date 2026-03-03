@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  name              String?
+  image             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Subscription info
+  plan              Plan     @default(FREE)
+  subscriptionId    String?
+  searchesUsed      Int      @default(0)
+  monthlyLimit      Int      @default(10)
+  lastResetDate     DateTime @default(now())
+  
+  // Relations
+  keywordLists      KeywordList[]
+  searchHistory     SearchHistory[]
+  
+  @@map("users")
+}
+
+model KeywordList {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  keywords    Keyword[]
+  
+  @@map("keyword_lists")
+}
+
+model Keyword {
+  id              String   @id @default(cuid())
+  keyword         String
+  searchVolume    Int?
+  competition     Float?
+  cpc             Float?
+  difficulty      Int?
+  platform        Platform @default(GOOGLE)
+  language        String   @default("en")
+  country         String   @default("US")
+  createdAt       DateTime @default(now())
+  
+  keywordListId   String?
+  keywordList     KeywordList? @relation(fields: [keywordListId], references: [id], onDelete: Cascade)
+  
+  @@map("keywords")
+}
+
+model SearchHistory {
+  id          String   @id @default(cuid())
+  query       String
+  platform    Platform @default(GOOGLE)
+  language    String   @default("en")
+  country     String   @default("US")
+  resultsCount Int     @default(0)
+  userId      String
+  createdAt   DateTime @default(now())
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("search_history")
+}
+
+model CachedSearchResult {
+  id            String   @id @default(cuid())
+  hash          String   @unique
+  query         String
+  platform      Platform
+  country       String
+  language      String
+  results       String   // JSON data
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt // Allows us to invalidate old cache
+  
+  @@map("cached_search_results")
+}
+
+enum Plan {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum Platform {
+  GOOGLE
+  YOUTUBE
+  BING
+  AMAZON
+  EBAY
+  PLAY_STORE
+  APP_STORE
+  INSTAGRAM
+  TWITTER
+  PINTEREST
+}
